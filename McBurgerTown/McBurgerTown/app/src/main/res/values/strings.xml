@@ -77,23 +77,4 @@
     <!--Payments View-->
     <string name="payment_title">Select Payment Type</string>
 
-    <!--Seating View-->
-    <!--<string name="seating_title">Select Dining Preferences</string>-->
-    <!--<string name="seat_back">Back</string>-->
-    <!--<string name="seat_submit">Submit</string>-->
-
-    <!--<string-array name="location">-->
-        <!--<item>Select Dining Option</item>-->
-        <!--<item>Take Out</item>-->
-        <!--<item>Dine-In - Patio</item>-->
-        <!--<item>Dine-In</item>-->
-    <!--</string-array>-->
-
-    <!--<string-array name="seating">-->
-        <!--<item>Select Seating Option</item>-->
-        <!--<item>Table</item>-->
-        <!--<item>Booth</item>-->
-        <!--<item>Booth Table</item>-->
-    <!--</string-array>-->
-
 </resources>

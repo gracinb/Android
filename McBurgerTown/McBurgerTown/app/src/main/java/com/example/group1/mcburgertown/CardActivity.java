@@ -1,3 +1,9 @@
+//-----------------------------------------------------------------------------
+//UI/Wire Frame: Manuel Anastsakis & Nabil Azam
+//Back Code: Tien Dam & Brian Gracin
+//Course: IST 402 - Android Development
+//Instructor: Joe Oakes
+//-----------------------------------------------------------------------------
 package com.example.group1.mcburgertown;
 
 import android.app.Activity;
@@ -13,6 +19,7 @@ import android.widget.EditText;
 public class CardActivity extends Activity {
 
     public String mainText;
+    public String passLoc;
     private EditText Summary;
     private EditText TotalBox;
 
@@ -28,6 +35,7 @@ public class CardActivity extends Activity {
         String[] Splitter = mainText.split("\\*");
         Summary = (EditText) findViewById(R.id.txtOrder);
         TotalBox = (EditText) findViewById(R.id.orderCTotal);
+        passLoc = Splitter[2];
 
         Summary.setText(Splitter[1]);
         TotalBox.setText(Splitter[0]);
@@ -63,15 +71,33 @@ public class CardActivity extends Activity {
         intentPay.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intentPay);
     }
+
+    public void toEnd(View view)
+    {
+        Intent intentEnd = new Intent(this, MainActivity.class);
+        intentEnd.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intentEnd.putExtra("End", TotalBox.getText().toString() + "*" + passLoc);
+        startActivity(intentEnd);
+    }
+
     public class ButtonListener implements OnClickListener {
 
 
         @Override
         public void onClick(View view) {
-
-
+            if (view.getId() == R.id.btnCCSubmit)
+            {
+                toEnd(view);
+            }
         }
-
     }
-
 }
+
+
+
+
+
+
+
+
+

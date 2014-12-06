@@ -1,6 +1,13 @@
+//-----------------------------------------------------------------------------
+//UI/Wire Frame: Manuel Anastsakis & Nabil Azam
+//Back Code: Tien Dam & Brian Gracin
+//Course: IST 402 - Android Development
+//Instructor: Joe Oakes
+//-----------------------------------------------------------------------------
 package com.example.group1.mcburgertown;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +17,8 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.content.Intent;
+
+import java.util.Random;
 
 
 public class MainActivity extends Activity {
@@ -39,9 +48,9 @@ public class MainActivity extends Activity {
         (findViewById(R.id.btnOrderAdd)).setOnClickListener(btnListener);
         (findViewById(R.id.btnOrderClear)).setOnClickListener(btnListener);
 
-        if (theEnd != null )
+        if (theEnd != null)
         {
-
+            popUp();
         }
     }
 
@@ -67,9 +76,31 @@ public class MainActivity extends Activity {
     public void toPayment(View view)
     {
         Intent intentPayment = new Intent(this, PaymentActivity.class);
-        String total = TotalBox.getText().toString() + "*" + Summary.getText().toString() + "*" + Location.getSelectedItem().toString();
+        String total = TotalBox.getText().toString() + "*" + Summary.getText().toString()
+                + "*" + Location.getSelectedItem().toString();
         intentPayment.putExtra("tTot",total);
         startActivity(intentPayment);
+    }
+
+    public void popUp ()
+    {
+        final Random rand = new Random();
+        String[] Splitter = theEnd.split("\\*");
+        final int min = 100000;
+        final int max = 900000;
+        final int random = rand.nextInt((max - min) + 1) + min;
+
+        new AlertDialog.Builder(this)
+                .setTitle("YourOrder")
+                .setMessage("Your order was: " + Splitter[0] + "\n" + "You picked: " + Splitter[1]
+                        + "\n" + "Order number: " + random )
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     public class ButtonListener implements OnClickListener {

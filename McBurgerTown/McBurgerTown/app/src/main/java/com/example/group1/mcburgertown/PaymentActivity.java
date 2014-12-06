@@ -1,3 +1,9 @@
+//-----------------------------------------------------------------------------
+//UI/Wire Frame: Manuel Anastsakis & Nabil Azam
+//Back Code: Tien Dam & Brian Gracin
+//Course: IST 402 - Android Development
+//Instructor: Joe Oakes
+//-----------------------------------------------------------------------------
 package com.example.group1.mcburgertown;
 
 import android.app.Activity;
@@ -78,7 +84,8 @@ public class PaymentActivity extends Activity {
     public void toCard(View view)
     {
         Intent intentCard = new Intent(this, CardActivity.class);
-        String total = TotalBox.getText().toString() + "*" + Summary.getText().toString() + "*" + passLoc;
+        String total = TotalBox.getText().toString() + "*" + Summary.getText().toString() +
+                "*" + passLoc;
         intentCard.putExtra("tTot",total);
         startActivity(intentCard);
     }
