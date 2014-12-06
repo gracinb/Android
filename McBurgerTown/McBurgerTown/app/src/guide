@@ -1,0 +1,24 @@
+--activity_main--
+
+Entree
+    List of entrees with prices linked to an ArrayAdapter in the back code
+
+Drink
+    List of drinks with prices linked to an ArrayAdapter in the back code.
+
+Current Choice
+    Entree information based off spinner selections.
+
+Order Summary
+    Show order information
+    -Make scrollable
+
+Add
+    Add order for person
+
+Clear
+    Clear Order Summary
+
+Submit
+    Submit food order
+    Redirect to seating View

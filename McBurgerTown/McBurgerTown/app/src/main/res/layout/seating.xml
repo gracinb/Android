@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#ff494949"
+    android:id="@+id/seatingLayout"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@+string/seating_title"
+        android:gravity="center"
+        android:id="@+id/txtSeatingTitle"
+        android:textColor="#ffffff"/>
+
+   <Spinner
+       android:layout_width="match_parent"
+       android:layout_height="30dp"
+       android:layout_below="@+id/txtSeatingTitle"
+       android:layout_marginTop="40dp"
+       android:id="@+id/locationSpinner"
+       android:background="#ffffff"
+       android:entries="@array/location"
+       android:prompt="@array/location"
+       />
+
+   <!--<Spinner-->
+       <!--android:layout_width="match_parent"-->
+       <!--android:layout_height="30dp"-->
+       <!--android:layout_below="@+id/locationSpinner"-->
+       <!--android:layout_marginTop="40dp"-->
+       <!--android:id="@+id/styleSpinner"-->
+       <!--android:background="#ffffff"-->
+       <!--android:entries="@array/seating"-->
+       <!--android:prompt="@array/seating"-->
+       <!--/>-->
+
+
+
+   <!--<TableRow-->
+       <!--android:layout_width="match_parent"-->
+       <!--android:layout_height="wrap_content"-->
+       <!--android:layout_marginTop="40dp"-->
+       <!--android:layout_below="@+id/styleSpinner"-->
+       <!-->-->
+
+      <!--<Button-->
+          <!--android:layout_width="wrap_content"-->
+          <!--android:layout_height="wrap_content"-->
+          <!--android:text="@string/cc_cancel"-->
+          <!--android:id="@+id/btnSeatBack"-->
+          <!--android:textColor="#ffffff"-->
+          <!--android:layout_weight="1" />-->
+
+      <!--<Button-->
+          <!--android:layout_width="wrap_content"-->
+          <!--android:layout_height="wrap_content"-->
+          <!--android:text="@string/cc_submit"-->
+          <!--android:id="@+id/btnSeatSubmit"-->
+          <!--android:layout_weight="1"-->
+          <!--android:textColor="#ffffff"/>-->
+   <!--</TableRow>-->
+
+
+
+</RelativeLayout>

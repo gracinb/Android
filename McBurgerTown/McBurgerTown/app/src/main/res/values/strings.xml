@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">McBurgerTown</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Credit Card Payment Layout-->
+    <string name="cc_pay_title">Credit Card Payment</string>
+    <string name="cc_num_title">Credit Card Number</string>
+    <string name="cc_name_title">Cardholder Name</string>
+    <string name="cc_expire_title">Expiration Date</string>
+    <string name="cc_cvv_title">CVV</string>
+    <string name="cc_cancel">Cancel</string>
+    <string name="cc_submit">Submit</string>
+    <string-array name="month">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="year">
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+    </string-array>
+
+    <!--Food Order Layout (mainLayout)-->
+    <string name="order_title">Order Selection</string>
+    <string name="choice_view_text">Order Summary</string>
+    <string name="order_view_title">Total</string>
+    <string name="order_add">Add</string>
+    <string name="order_clear">Clear</string>
+    <string name="order_submit">Pay Now</string>
+
+    <string-array name="location">
+        <item>Select Location</item>
+        <item>Bar</item>
+        <item>Table</item>
+        <item>Booth</item>
+        <item>Take Out</item>
+    </string-array>
+
+    <string-array name="entrees">
+        <item>Select Entree</item>
+        <item>Hamburger $5.99</item>
+        <item>Cheeseburger $6.49</item>
+        <item>Salad $7.99</item>
+        <item>Turkey Burger $6.49</item>
+        <item>Reuben $6.99</item>
+        <item>BLT $4.99</item>
+        <item>Wings $8.99</item>
+    </string-array>
+
+    <string-array name="drinks">
+        <item>Select Drink</item>
+        <item>Root Beer $1.99</item>
+        <item>Ginger Ale $0.99</item>
+        <item>Cola $0.99</item>
+        <item>Sweetened Ice Tea $1.49</item>
+        <item>Unsweetened Ice Tea $1.49</item>
+        <item>Lemonade $1.99</item>
+        <item>Bottle Water $1.49</item>
+    </string-array>
+
+    <!--Payments View-->
+    <string name="payment_title">Select Payment Type</string>
+
+    <!--Seating View-->
+    <!--<string name="seating_title">Select Dining Preferences</string>-->
+    <!--<string name="seat_back">Back</string>-->
+    <!--<string name="seat_submit">Submit</string>-->
+
+    <!--<string-array name="location">-->
+        <!--<item>Select Dining Option</item>-->
+        <!--<item>Take Out</item>-->
+        <!--<item>Dine-In - Patio</item>-->
+        <!--<item>Dine-In</item>-->
+    <!--</string-array>-->
+
+    <!--<string-array name="seating">-->
+        <!--<item>Select Seating Option</item>-->
+        <!--<item>Table</item>-->
+        <!--<item>Booth</item>-->
+        <!--<item>Booth Table</item>-->
+    <!--</string-array>-->
+
+</resources>

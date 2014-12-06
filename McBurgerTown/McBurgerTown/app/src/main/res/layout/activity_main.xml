@@ -1,0 +1,162 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:background="#ff494949"
+    android:id="@+id/mainLayout">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@+string/order_title"
+        android:gravity="center"
+        android:id="@+id/txtOrderTitle"
+        android:textColor="#ffffff"/>
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:id="@+id/locationSpinner"
+        android:layout_below="@+id/txtOrderTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:entries="@array/location"
+        android:prompt="@array/location"
+        android:background="#ffffff" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:id="@+id/entreeSpinner"
+        android:layout_below="@+id/txtOrderTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="60dp"
+        android:entries="@array/entrees"
+        android:prompt="@array/entrees"
+        android:background="#ffffff" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:id="@+id/drinkSpinner"
+        android:layout_below="@+id/entreeSpinner"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:layout_alignEnd="@+id/entreeSpinner"
+        android:layout_alignRight="@+id/entreeSpinner"
+        android:entries="@array/drinks"
+        android:prompt="@array/drinks"
+        android:background="#ffffff"
+        android:spinnerMode="dropdown"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/drinkSpinner"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/txtEntreeInfo"
+        android:text="@string/choice_view_text"
+        android:textColor="#ffffff" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:gravity="start"
+        android:layout_height="170dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/orderSummary"
+        android:layout_below="@+id/txtEntreeInfo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="#ffffff"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/orderSummary"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/txtOrderTotal"
+        android:text="@string/order_view_title"
+        android:textColor="#ffffff" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/orderTotal"
+        android:layout_below="@+id/txtOrderTotal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:gravity="end"
+        android:background="#ffffff"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
+
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/orderTotal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/tableRow">
+
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/order_add"
+            android:id="@+id/btnOrderAdd"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="#ffffff"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/order_clear"
+            android:id="@+id/btnOrderClear"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="#ffffff"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/order_submit"
+            android:id="@+id/btnOrderSubmit"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:onClick="toPayment"/>
+
+    </TableRow>
+
+</RelativeLayout>
