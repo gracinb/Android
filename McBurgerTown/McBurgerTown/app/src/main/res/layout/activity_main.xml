@@ -38,8 +38,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="60dp"
-        android:entries="@array/entrees"
-        android:prompt="@array/entrees"
         android:background="#ffffff" />
 
     <Spinner
@@ -52,12 +50,9 @@
         android:layout_marginTop="10dp"
         android:layout_alignEnd="@+id/entreeSpinner"
         android:layout_alignRight="@+id/entreeSpinner"
-        android:entries="@array/drinks"
-        android:prompt="@array/drinks"
         android:background="#ffffff"
         android:spinnerMode="dropdown"
         />
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -115,8 +110,6 @@
         android:focusable="false"
         android:focusableInTouchMode="false"/>
 
-
-
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -126,7 +119,6 @@
         android:id="@+id/tableRow">
 
         <Button
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@+string/order_add"
@@ -154,8 +146,7 @@
             android:layout_gravity="bottom"
             android:layout_weight="1"
             android:textSize="15sp"
-            android:textColor="#ffffff"
-            android:onClick="toPayment"/>
+            android:textColor="#ffffff"/>
 
     </TableRow>
 

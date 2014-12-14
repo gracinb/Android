@@ -52,29 +52,10 @@
         <item>Take Out</item>
     </string-array>
 
-    <string-array name="entrees">
-        <item>Select Entree</item>
-        <item>Hamburger $5.99</item>
-        <item>Cheeseburger $6.49</item>
-        <item>Salad $7.99</item>
-        <item>Turkey Burger $6.49</item>
-        <item>Reuben $6.99</item>
-        <item>BLT $4.99</item>
-        <item>Wings $8.99</item>
-    </string-array>
-
-    <string-array name="drinks">
-        <item>Select Drink</item>
-        <item>Root Beer $1.99</item>
-        <item>Ginger Ale $0.99</item>
-        <item>Cola $0.99</item>
-        <item>Sweetened Ice Tea $1.49</item>
-        <item>Unsweetened Ice Tea $1.49</item>
-        <item>Lemonade $1.99</item>
-        <item>Bottle Water $1.49</item>
-    </string-array>
-
     <!--Payments View-->
     <string name="payment_title">Select Payment Type</string>
+    <string name="payment_card">Card</string>
+    <string name="payment_cash">Cash</string>
+    <string name="payment_back">Back</string>
 
 </resources>

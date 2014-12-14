@@ -25,40 +25,40 @@ public class PaymentActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        Intent intent = getIntent();
-        mainText = intent.getStringExtra("tTot");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment);
 
-        String[] Splitter = mainText.split("\\*");
+        //Gets intent that triggered this activity along with extra
+        Intent intent = getIntent();
+        mainText = intent.getStringExtra("tTot");
+
+        //Assign EditText elements to variables
         Summary = (EditText) findViewById(R.id.orderPSummary);
         TotalBox = (EditText) findViewById(R.id.orderPTotal);
-        passLoc = Splitter[2];
 
+        //Splits extra string and assigns pieces
+        String[] Splitter = mainText.split("\\*");
         Summary.setText(Splitter[1]);
         TotalBox.setText(Splitter[0]);
+        passLoc = Splitter[2];
 
+        //Assign btnListener to buttons
         ButtonListener btnListener = new ButtonListener();
+        (findViewById(R.id.btnCredit)).setOnClickListener(btnListener);
         (findViewById(R.id.btnCash)).setOnClickListener(btnListener);
+        (findViewById(R.id.btnBack)).setOnClickListener(btnListener);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -92,12 +92,22 @@ public class PaymentActivity extends Activity {
 
     public class ButtonListener implements OnClickListener {
 
-
         @Override
         public void onClick(View view) {
+            //Goes to credit page when Card clicked
+            if (view.getId() == R.id.btnCredit)
+            {
+                toCard(view);
+            }
+            //Passes order info and then clears data when Cash clicked
             if (view.getId() == R.id.btnCash)
             {
                 toEnd(view);
+            }
+            //Goes back to main page when Back clicked
+            if (view.getId() == R.id.btnBack)
+            {
+                toMain(view);
             }
         }
 

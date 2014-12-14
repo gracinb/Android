@@ -30,10 +30,9 @@
         android:layout_marginStart="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginEnd="50dp"
-        android:text="Card"
+        android:text="@string/payment_card"
         android:id="@+id/btnCredit"
-        android:textColor="#ffffff"
-        android:onClick="toCard"/>
+        android:textColor="#ffffff"/>
 
     <Button
         android:layout_width="fill_parent"
@@ -43,11 +42,10 @@
         android:layout_marginStart="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginEnd="50dp"
-        android:text="Cash"
+        android:text="@string/payment_cash"
         android:id="@+id/btnCash"
         android:textColor="#ffffff"
-        android:layout_below="@+id/btnCredit"
-        android:onClick="toCard"/>
+        android:layout_below="@+id/btnCredit"/>
 
     <Button
         android:layout_width="fill_parent"
@@ -58,10 +56,9 @@
         android:layout_marginStart="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginEnd="50dp"
-        android:text="Back"
+        android:text="@string/payment_back"
         android:id="@+id/btnBack"
-        android:textColor="#ffffff"
-        android:onClick="toMain"/>
+        android:textColor="#ffffff"/>
 
     <TextView
         android:layout_width="wrap_content"

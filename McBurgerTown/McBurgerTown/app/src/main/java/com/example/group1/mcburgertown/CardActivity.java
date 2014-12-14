@@ -25,47 +25,47 @@ public class CardActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        Intent intent = getIntent();
-        mainText = intent.getStringExtra("tTot");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.credit);
 
-        String[] Splitter = mainText.split("\\*");
+        //Gets intent that triggered this activity along with extra
+        Intent intent = getIntent();
+        mainText = intent.getStringExtra("tTot");
+
+        //Assign EditText elements to variables
         Summary = (EditText) findViewById(R.id.txtOrder);
         TotalBox = (EditText) findViewById(R.id.orderCTotal);
-        passLoc = Splitter[2];
 
+        //Splits extra string and assigns pieces
+        String[] Splitter = mainText.split("\\*");
         Summary.setText(Splitter[1]);
         TotalBox.setText(Splitter[0]);
+        passLoc = Splitter[2];
 
+        //Assign btnListener to buttons
         ButtonListener btnListener = new ButtonListener();
+        (findViewById(R.id.btnCCCancel)).setOnClickListener(btnListener);
         (findViewById(R.id.btnCCSubmit)).setOnClickListener(btnListener);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-    public void toPay(View view)
+
+    public void toMain(View view)
     {
         Intent intentPay = new Intent(this, MainActivity.class);
         intentPay.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -81,10 +81,14 @@ public class CardActivity extends Activity {
     }
 
     public class ButtonListener implements OnClickListener {
-
-
         @Override
         public void onClick(View view) {
+            //Goes back to main page when Cancel clicked
+            if (view.getId() == R.id.btnCCCancel)
+            {
+                toMain(view);
+            }
+            //Passes order info and then clears data when Submit clicked
             if (view.getId() == R.id.btnCCSubmit)
             {
                 toEnd(view);

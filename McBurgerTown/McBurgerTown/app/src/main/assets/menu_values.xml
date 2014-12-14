@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE products [<!ELEMENT products (entrees|drinks)*><!ELEMENT entrees (entree)*><!ELEMENT entree (#PCDATA)><!ELEMENT drinks (drink)*><!ELEMENT drink (#PCDATA)>]>
+<products>
+    <entrees>
+        <entree>Select Entree</entree>
+        <entree>Hamburger $5.99</entree>
+        <entree>Cheeseburger $6.49</entree>
+        <entree>Salad $7.99</entree>
+        <entree>Turkey Burger $6.49</entree>
+        <entree>Reuben $6.99</entree>
+        <entree>BLT $4.99</entree>
+        <entree>Wings $8.99</entree>
+    </entrees>
+
+    <drinks>
+        <drink>Select Drink</drink>
+        <drink>Root Beer $1.99</drink>
+        <drink>Ginger Ale $0.99</drink>
+        <drink>Cola $0.99</drink>
+        <drink>Sweetened Ice Tea $1.49</drink>
+        <drink>Unsweetened Ice Tea $1.49</drink>
+        <drink>Lemonade $1.99</drink>
+        <drink>Bottle Water $1.49</drink>
+    </drinks>
+</products>
