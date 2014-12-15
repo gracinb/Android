@@ -44,27 +44,37 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Declare InputStream that will be used
         InputStream in_s;
 
         //Attempt to read in XML file
         XmlPullParserFactory pullParserFactory;
         try {
+            //Creates parser factory instance
             pullParserFactory = XmlPullParserFactory.newInstance();
+            //Creates parser from factory instance
             XmlPullParser parser = pullParserFactory.newPullParser();
 
+            //Open xml to be read
+            //xml file is in the assets folder
             in_s = getApplicationContext().getAssets().open("menu_values.xml");
+            //Set to not process namespaces
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            //Assign InputStream with xml document to parser
             parser.setInput(in_s, null);
 
             //Calls method to parse XML file given parser
             parseXML(parser);
 
+            //Close the xml file, from literature not required but good practice
             in_s.close();
 
+        //Catch error with parser
         } catch (XmlPullParserException e) {
-
             e.printStackTrace();
-        } catch (IOException e) {
+        }
+        //Catch error opening/reading xml file
+        catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -109,7 +119,11 @@ public class MainActivity extends Activity {
 
     private void parseXML(XmlPullParser parser) throws XmlPullParserException,IOException
     {
+        //Int to track parser's event type
+        //getEventType is (START_TAG, END_TAG, TEXT, etc.) returned as an int
         int eventType = parser.getEventType();
+
+        //String used to hold items as they are read in from xml
         String entreeCurrent;
         String drinkCurrent;
 
@@ -117,10 +131,14 @@ public class MainActivity extends Activity {
         while (eventType != XmlPullParser.END_DOCUMENT) {
             String name;
             switch (eventType) {
+                //Creates string arrays to hold on input if eventType is START_DOCUMENT
                 case XmlPullParser.START_DOCUMENT:
                     entrees = new ArrayList<String>();
                     drinks = new ArrayList<String>();
                     break;
+                //If eventType is START_TAG it gets and checks the tag name and performs an action
+                //If name the name matches it gets field information and stores it in the correct
+                //  string ArrayList
                 case XmlPullParser.START_TAG:
                     name = parser.getName();
 
@@ -133,6 +151,7 @@ public class MainActivity extends Activity {
                         drinks.add(drinkCurrent);
                     }
             }
+            //Tells parser to move on by setting new eventType
             eventType = parser.next();
         }
     }
