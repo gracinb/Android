@@ -30,11 +30,12 @@ import java.util.Locale;
 
 public class LocalPaymentActivity extends Activity {
 
-    public String mainText;
-    public String passLoc;
+    private String mainText;
+    private String passLoc;
     private EditText Summary;
     private EditText TotalBox;
     private Double Total = 0.00;
+    private static final String TAG = "paymentActivity";
 
     //PayPal object
     private static PayPalConfiguration config = new PayPalConfiguration()
@@ -120,6 +121,14 @@ public class LocalPaymentActivity extends Activity {
         startActivity(intentEnd);
     }
 
+    public void toEndPayPal()
+    {
+        Intent intentEnd = new Intent(this, MainActivity.class);
+        intentEnd.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intentEnd.putExtra("End", TotalBox.getText().toString() + "*" + passLoc + "*" + "Transaction Complete");
+        startActivity(intentEnd);
+    }
+
     public class ButtonListener implements OnClickListener {
 
         @Override
@@ -167,8 +176,9 @@ public class LocalPaymentActivity extends Activity {
             PaymentConfirmation confirm = data.getParcelableExtra(com.paypal.android.sdk.payments.PaymentActivity.EXTRA_RESULT_CONFIRMATION);
             if (confirm != null) {
                 try {
-                    Log.i("paymentExample", confirm.toJSONObject().toString(4));
-                    toEnd();
+                    Log.i(TAG, confirm.toJSONObject().toString(4));
+                    Log.i(TAG, confirm.getPayment().toJSONObject().toString(4));
+                    toEndPayPal();
 
                     // TODO: send 'confirm' to your server for verification.
                     // see https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
