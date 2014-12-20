@@ -54,7 +54,7 @@
 
     <!--Payments View-->
     <string name="payment_title">Select Payment Type</string>
-    <string name="payment_card">Card</string>
+    <string name="payment_card">PayPal</string>
     <string name="payment_cash">Cash</string>
     <string name="payment_back">Back</string>
 
