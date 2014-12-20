@@ -1,8 +1,19 @@
 //-----------------------------------------------------------------------------
+//--Original Information--
 //UI/Wire Frame: Manuel Anastsakis & Nabil Azam
 //Back Code: Tien Dam & Brian Gracin
 //Course: IST 402 - Android Development
 //Instructor: Joe Oakes
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+//--For all pushes beyond 12/15/2014--
+//Continuation Author: Brian Gracin
+//Buyer Name:IST421Team1Buyer@gmail.com
+//Buyer Pass:IST421Team1Buyer
+//Continued to develop app beyond course end date, credentials above are for
+// PayPal sandbox to be used with integrated PayPal.
+//Basic PayPal integration 12/19/2014
 //-----------------------------------------------------------------------------
 package com.example.group1.mcburgertown;
 
@@ -47,6 +58,9 @@ import android.util.Log;
 import org.json.JSONException;
 
 import java.math.BigDecimal;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 //End Paypal imports
 
 public class MainActivity extends Activity {
@@ -59,6 +73,7 @@ public class MainActivity extends Activity {
     private EditText TotalBox;
     private ArrayList<String> entrees = null;
     private ArrayList<String> drinks = null;
+    private Double Total = 0.00;
 
     //Paypal object
     private static PayPalConfiguration config = new PayPalConfiguration()
@@ -255,9 +270,10 @@ public class MainActivity extends Activity {
         String selectedFood = null;
         String selectedDrink = null;
         Integer orderNumber = 0;
-        Double Total = 0.00;
         Double foodPrice = 0.00;
         Double drinkPrice = 0.00;
+        final NumberFormat enUS = NumberFormat.getCurrencyInstance(Locale.US);
+        String toTotalBox;
 
         @Override
         public void onClick(View view) {
@@ -290,7 +306,11 @@ public class MainActivity extends Activity {
 
                 //Updates and displays running total
                 Total += foodPrice + drinkPrice;
-                TotalBox.setText("$ " + Total.toString());
+
+
+                toTotalBox = enUS.format(Total);
+                //TotalBox.setText("$ " + Total.toString());
+                TotalBox.setText(toTotalBox);
 
                 //Clears information for next order
                 Food.setSelection(0);
@@ -319,7 +339,7 @@ public class MainActivity extends Activity {
                 //   - PAYMENT_INTENT_ORDER to create a payment for authorization and capture
                 //     later via calls from your server.
 
-                PayPalPayment payment = new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
+                PayPalPayment payment = new PayPalPayment(new BigDecimal(Total.toString()), "USD", "Meal at McBurgerTown",
                         PayPalPayment.PAYMENT_INTENT_SALE);
 
                 Intent intent = new Intent(MainActivity.this, PaymentActivity.class);
@@ -341,6 +361,7 @@ public class MainActivity extends Activity {
             if (confirm != null) {
                 try {
                     Log.i("paymentExample", confirm.toJSONObject().toString(4));
+                    super.recreate();
 
                     // TODO: send 'confirm' to your server for verification.
                     // see https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
