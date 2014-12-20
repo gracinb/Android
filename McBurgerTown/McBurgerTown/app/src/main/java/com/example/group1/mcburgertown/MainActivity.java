@@ -28,6 +28,27 @@ import java.util.Random;
 import java.io.IOException;
 import java.io.InputStream;
 
+//Paypal imports
+import com.paypal.android.sdk.payments.PayPalAuthorization;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
+import com.paypal.android.sdk.payments.PayPalItem;
+import com.paypal.android.sdk.payments.PayPalOAuthScopes;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalPaymentDetails;
+import com.paypal.android.sdk.payments.PayPalProfileSharingActivity;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
+import com.paypal.android.sdk.payments.ShippingAddress;
+
+import android.util.Log;
+
+import org.json.JSONException;
+
+import java.math.BigDecimal;
+//End Paypal imports
+
 public class MainActivity extends Activity {
 
     private String theEnd;
@@ -39,10 +60,26 @@ public class MainActivity extends Activity {
     private ArrayList<String> entrees = null;
     private ArrayList<String> drinks = null;
 
+    //Paypal object
+    private static PayPalConfiguration config = new PayPalConfiguration()
+
+            // Start with mock environment.  When ready, switch to sandbox (ENVIRONMENT_SANDBOX)
+            // or live (ENVIRONMENT_PRODUCTION)
+            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
+
+            .clientId("AfFXrxCQed8pD7PSNrRirV4q252SpwUaZv2Eq11hftDVO8PHNPU5oK5f6mVT");
+    //End Paypal object
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Paypal intent
+        Intent intent = new Intent(this, PayPalService.class);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+        startService(intent);
+        //End Paypal intent
 
         //Declare InputStream that will be used
         InputStream in_s;
@@ -80,8 +117,8 @@ public class MainActivity extends Activity {
         }
 
         //Get intent that returned to this page
-        Intent intent = getIntent();
-        theEnd = intent.getStringExtra("End");
+        Intent intentEnd = getIntent();
+        theEnd = intentEnd.getStringExtra("End");
 
         //Assign Spinner and EditText elements to variables
         Food = (Spinner) findViewById(R.id.entreeSpinner);
@@ -115,6 +152,13 @@ public class MainActivity extends Activity {
         {
             popUp();
         }
+    }
+
+    //Added for Paypal
+    @Override
+    public void onDestroy() {
+        stopService(new Intent(this, PayPalService.class));
+        super.onDestroy();
     }
 
     private void parseXML(XmlPullParser parser) throws XmlPullParserException,IOException
@@ -268,8 +312,50 @@ public class MainActivity extends Activity {
             //Goes to payment page with intent when Pay Now clicked
             if (view.getId() == R.id.btnOrderSubmit)
             {
-                toPayment(view);
+                //toPayment(view);
+                // PAYMENT_INTENT_SALE will cause the payment to complete immediately.
+                // Change PAYMENT_INTENT_SALE to
+                //   - PAYMENT_INTENT_AUTHORIZE to only authorize payment and capture funds later.
+                //   - PAYMENT_INTENT_ORDER to create a payment for authorization and capture
+                //     later via calls from your server.
+
+                PayPalPayment payment = new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
+                        PayPalPayment.PAYMENT_INTENT_SALE);
+
+                Intent intent = new Intent(MainActivity.this, PaymentActivity.class);
+
+                // send the same configuration for restart resiliency
+                intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+
+                intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
+
+                startActivityForResult(intent, 0);
             }
+        }
+    }
+
+    @Override
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+            if (confirm != null) {
+                try {
+                    Log.i("paymentExample", confirm.toJSONObject().toString(4));
+
+                    // TODO: send 'confirm' to your server for verification.
+                    // see https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
+                    // for more details.
+
+                } catch (JSONException e) {
+                    Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
+                }
+            }
+        }
+        else if (resultCode == Activity.RESULT_CANCELED) {
+            Log.i("paymentExample", "The user canceled.");
+        }
+        else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+            Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
         }
     }
 }
